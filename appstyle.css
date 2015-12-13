@@ -1,0 +1,164 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800);
+
+body {
+	background-color: whitesmoke;
+	margin: 0;
+	padding: 0;
+	font-family: 'Open Sans', sans-serif;
+}
+
+header {
+	background-color: #C2185B;
+}
+
+header > h1 {
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+	max-width: 1200px;
+	padding-top: 2em;
+	padding-bottom: 1em;
+	color: white;
+	font-size: 56px;
+	font-weight: 400;
+}
+
+#content {
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+	max-width: 1200px;
+}
+
+h2 {
+	font-weight: 400;
+	font-size: 34px;
+	color: #c2185b;
+}
+
+.actionButton {
+	color: #c2185b;
+	font-weight: 600;
+	text-transform: uppercase;
+	float: right;
+  margin-left: 1em;
+}
+
+.cancelButton {
+    color: #909090!important;
+}
+
+a:link {
+  text-decoration: none;
+  color: #c2185b;
+}
+
+.actionButton a:visited {
+  text-decoration: none;
+  color: #c2185b;
+}
+
+.actionButton a:hover {
+  text-decoration: none;
+  color: #c2185b;
+}
+
+input[type="text"], textarea {
+	width: 100%;
+	background-color: transparent;
+	border-width: 0;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: grey;
+	margin-top: 0.5em;
+	font-size: 150%;
+}
+
+input[type="text"]:focus, textarea:focus {
+	outline: none; /*Get rid of blue glow*/
+	border-bottom-width: 2px;
+	border-bottom-color: #c2185b;
+}
+
+label {
+	color: darkgray;
+	text-transform: capitalize;
+}
+
+.placeholder {
+  width:100%;
+  text-align: center;
+  background: lightgray;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.btn-round {
+  background-color: #c2185b;
+  border-radius: 999em;
+  width: 56px;
+  height: 56px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  line-height: 1;
+  font-size: 36px;
+  position: fixed;
+  cursor: pointer;
+  display: inline-block;
+  right: 2em;
+  bottom: 2em;
+}
+
+.btn-round span {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  margin-top: -22px;
+  color: #FFF;
+}
+
+input[type="checkbox"] {
+  position: relative;
+  top: -0.375rem;
+  margin: 0 1rem 0 0;
+  cursor: pointer;
+  display: inline;
+}
+
+input[type="checkbox"]:before {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  content: "";
+  position: absolute;
+  left: 0;
+  z-index: 1;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid #d8d8d8;
+}
+
+input[type="checkbox"]:checked:before {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+ height: .5rem;
+  border-color: #c2185b;
+  border-top-style: none;
+  border-right-style: none;
+}
+
+input[type="checkbox"]:after {
+  content: "";
+  position: absolute;
+  top: -0.125rem;
+  left: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  background: whitesmoke;
+  cursor: pointer;
+}

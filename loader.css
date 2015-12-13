@@ -1,0 +1,75 @@
+.board {
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:250px;
+}
+
+.left,
+.right {
+  height:50px;
+  width:8px;
+  background:black;
+  display: inline-block;
+  position:absolute;
+}
+
+.left {
+  left:0;
+  animation: position1 2s infinite;
+}
+.right {
+  right:0;
+  animation: position2 2s infinite;
+}
+.ball,
+.ballhit {
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  background:black;
+  position:absolute;
+  animation: bounce 2s infinite;
+}
+.ballhit {
+  padding:4px;
+  margin:-6px 0 0 -6px;
+  border-radius:50%;
+  background:whitesmoke;
+  border:2px black solid;
+  z-index:-1;
+  animation: bounce2 2s infinite;
+}
+@keyframes position1 {
+    0% {top:-60px;}
+  25% {top:0;}
+    50% {top:60px;}
+  75% {top:-60px;}
+    100% {top:-60px;}
+}
+@keyframes position2 {
+    0% {top:60px;}
+    25% {top:0;}
+    50% {top:-60px;}
+   75% {top:-60px;}
+    100% {top:60px;}
+}
+@keyframes bounce {
+    0% {top:-35px;left:10px;}
+  25% {top:25px;left:225px;}
+    50% {top:75px;left:10px;}
+  75% {top:-35px;left:225px;}
+  100% {top:-35px;left:10px;}
+}
+@keyframes bounce2 {
+    0% {top:-35px;left:10px; border:2px whitesmoke solid;}
+  24% {border:2px whitesmoke solid;}
+  25% {top:25px;left:225px; border:2px #000 solid;}
+  49% {border:2px whitesmoke solid;}
+    50% {top:75px;left:10px; border:2px #000 solid;}
+  74% {border:2px whitesmoke solid;}
+  75% {top:-35px;left:225px; border:2px #000 solid;}
+  99% {border:2px whitesmoke solid;}
+  100% {top:-35px;left:10px; border:2px #000 solid;}
+}
