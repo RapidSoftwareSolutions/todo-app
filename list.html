@@ -1,3 +1,4 @@
+<!--The pahe showing an individual list and it's items-->
 <html ng-app="listApp">
 	<head>
 		<title>Todo.</title>
@@ -8,7 +9,7 @@
 	</head>
 	<body ng-controller="main">
 		<header>
-			<h1>My super list</h1>
+			<h1>{{getListName()}}</h1>
 		</header>
 		<div class="btn-round" ng-click="showAddForm()"><span>+</span></div>
 		<div id="content">

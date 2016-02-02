@@ -2,39 +2,23 @@
 var indexApp = angular.module('indexApp', []);
 
 indexApp.controller('main', ['$scope', '$http', '$location', function($scope, $http, $location) {
-	$scope.loading = false;
-	$scope.newListName = "";
-	
-	//Button function
+	/*Button function*/
 	$scope.createList = function() {
-		$scope.sendList($scope.convertListName($scope.newListName));
+		$scope.goToList($scope.convertListName($scope.newListName));
 	};
 	
-	//Utility funcions
+	/*Utility funcions*/
+    //Converts a list name to a valid URI value
 	$scope.convertListName = function(originalName) {
-			return encodeURIComponent(originalName.split(' ').join('-'));
+			return encodeURIComponent(originalName);
 				
 	};
 	
+    //Transfers the user to the list page
 	$scope.goToList = function(listName) {
 			window.location = 'list.html?list='+listName;
 	};
 	
-	$scope.sendList = function(listName) {
-		$scope.loading = true;
-		$http.post('https://todo.imrapid.io/list', { //BACKEND: Endpoint for creating a new list
-			name	: listName
-		})
-		.success(function(data, status, headers, config) {
-			//Redirect to list page
-			$scope.loading = false;
-			$scope.goToList(listName);
-		})
-		.error(function(data, status, headers, config) {
-			$scope.loading = false;
-			alert("There was an error creating the list. We truly apologize");
-		});
-	};
 }]);
 
 
@@ -46,6 +30,11 @@ listApp.controller('main', ['$scope', '$http', 'urlParam', function($scope, $htt
 	$scope.showingAddForm = false;
 	$scope.newItem = "";
 	$scope.loading = false;
+    $scope.listName = urlParam('list');
+    
+    $scope.getListName = function() {
+        return decodeURIComponent($scope.listName);  
+    };
 	
 	$scope.showAddForm = function() {
 		$scope.showingAddForm = true;	
@@ -65,7 +54,7 @@ listApp.controller('main', ['$scope', '$http', 'urlParam', function($scope, $htt
 	
 	$scope.markAsDone = function(item) {
 		$scope.loading = true;
-		$http.put('https://todo.imrapid.io/item/done', {id:item._id}) //BACKEND: Endpoint for marking an item as done
+		$http.post('/item-done', {id:item._id}) //BACKEND: Endpoint for marking an item as done
 		.success(function(data, status, headers, config) {
 			$scope.loading = false;
 			//Change to done
@@ -73,7 +62,7 @@ listApp.controller('main', ['$scope', '$http', 'urlParam', function($scope, $htt
 		})
 		.error(function(data, status, headers, config) {
 			$scope.loading = false;
-			alert("There was an error marking this item as done. We truly apologize");
+			console.warn("There was an error marking this item as done. We truly apologize");
 		});
 	};
 	
@@ -82,7 +71,7 @@ listApp.controller('main', ['$scope', '$http', 'urlParam', function($scope, $htt
 		var item = $scope.newItem;
 		
 		$scope.loading = true;
-		$http.post('https://todo.imrapid.io/item', { //BACKEND: Endpoint for creating an item
+		$http.post('/item', { //BACKEND: Endpoint for creating an item
 			list : listName,
 			item : item
 		})
@@ -95,14 +84,14 @@ listApp.controller('main', ['$scope', '$http', 'urlParam', function($scope, $htt
 		.error(function(data, status, headers, config) {
 			$scope.loading = false;
 			
-			alert("There was an error adding the item. We truly apologize");
+			console.warn("There was an error adding the item. We truly apologize");
 		});
 	};
 	
 	//Utility functions
 	$scope.getListItems = function(listName) {
 		$scope.loading = true;
-		$http.get('https://todo.imrapid.io/list?list='+listName) //BACKEND: Endpoint for getting all the items in a list
+		$http.post('/list', {list: listName}) //BACKEND: Endpoint for getting all the items in a list
 		.success(function(data, status, headers, config) {
 			$scope.loading = false;
 			
@@ -112,12 +101,12 @@ listApp.controller('main', ['$scope', '$http', 'urlParam', function($scope, $htt
 		.error(function(data, status, headers, config) {
 			$scope.loading = false;
 			
-			alert("There was an error loading the list. We truly apologize");
+			console.warn("There was an error loading the list. We truly apologize");
 		});
 	};
 	
 	//Get list items
-	$scope.getListItems(urlParam('list'));
+	$scope.getListItems($scope.listName);
 	
 }]);
 
